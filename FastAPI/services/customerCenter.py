@@ -10,7 +10,7 @@ collection = config.CUSTOMER_FAQ
 class FaqService:
 
     # 새로운 faq 추가
-    async def addFaq(faqData: dict) -> dict:
+    async def addFaq(self, faqData: dict) -> dict:
         faq = await insert_one(
             config.DB_SELFLEARNING,
             collection,
@@ -24,14 +24,14 @@ class FaqService:
         return newFaq
 
     # 전체 payments 검색
-    async def searchFaqs():
+    async def searchFaqs(self):
         faqs = []
         async for faq in find(config.DB_SELFLEARNING, collection):
             faqs.append(faq)
         return faqs
 
     # 해당 faq 검색
-    async def searchFaq(id: str) -> dict:
+    async def searchFaq(self, id: str) -> dict:
         id = ObjectId(id)
         faq = await find_one(
             config.DB_SELFLEARNING,
@@ -41,7 +41,7 @@ class FaqService:
             return faq
 
     # 해당 faq 수정
-    async def updateFaq(id: str, data: dict) -> dict:
+    async def updateFaq(self, id: str, data: dict) -> dict:
         id = ObjectId(id)
         faq = await find_one(
             config.DB_SELFLEARNING, 
@@ -65,7 +65,7 @@ class FaqService:
             return faq
 
     # 해당 faq 삭제
-    async def deleteFaq(id: str) -> dict:
+    async def deleteFaq(self, id: str) -> dict:
         id = ObjectId(id)
         faq = await find_one(
             config.DB_SELFLEARNING, 
