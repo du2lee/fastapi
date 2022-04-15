@@ -26,6 +26,16 @@ async def searchFaq(id):
     resultFaq = await faqService.searchFaq(id)
     return FaqDto(**resultFaq)
 
+# faq 전체검색
+@router.get("/faqs", description = '''**faq 전체 검색**''',
+                status_code=status.HTTP_200_OK)
+async def searchFaqs():
+    searchFaqs = await faqService.searchFaqs()
+    print('result',searchFaqs)
+    array = []
+    for idx in searchFaqs:
+        array.append(FaqDto(**idx))
+    return array
 
 # faq 수정
 @router.patch("/faq", description = '''**faq 수정**''',

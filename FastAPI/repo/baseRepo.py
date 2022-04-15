@@ -12,8 +12,8 @@ async def insert_one(database: str, collection: str, param: dict):
     return await getConnection()[database][collection].insert_one(param)
 
 
-async def find(database: str, collection: str):
-    return await getConnection()[database][collection].find()
+def find(database: str, collection: str):
+    return getConnection()[database][collection].find()
 
 
 async def find_one(database: str, collection: str, param: dict):
