@@ -1,0 +1,11 @@
+fastapi
+pymongo==3.12.3
+motor
+pydantic
+humps
+uvicorn
+requests
+python-dateutil
+pillow
+python-dotenv
+pytest
