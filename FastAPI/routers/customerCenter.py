@@ -27,7 +27,7 @@ async def searchFaq(id):
     return FaqDto(**resultFaq)
 
 
-# faq 검색
+# faq 수정
 @router.patch("/faq", description = '''**faq 수정**''',
                 status_code=status.HTTP_200_OK)
 async def updateFaq(id, faq: UpdateFaq = Body(...)):

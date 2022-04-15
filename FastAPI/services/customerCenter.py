@@ -23,7 +23,7 @@ class FaqService:
             {"_id": faq.inserted_id})
         return newFaq
 
-    # 전체 payments 검색
+    # 전체 faq 검색
     async def searchFaqs(self):
         faqs = []
         async for faq in find(config.DB_SELFLEARNING, collection):
