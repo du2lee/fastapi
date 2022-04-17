@@ -2,10 +2,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# iamport 
-IAMPORT_KEY = '0302040450941939'  # rest api key
-IAMPORT_SECRET = '6cde6ef2712befa864195ecedf8ad8a2230e275da0c6f9ea8f81805435fc454a2411a2d923c7013f'  # rest api secret
-
 """
 DEFAULT KEYWORD
 """
