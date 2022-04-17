@@ -20,7 +20,6 @@ def getConnection() -> AsyncIOMotorClient:
 
 
 async def connectMongo():
-    # mongoAddress = "mongodb://interx:interx%40504@{0}/admin".format("server.interxlab.io:15115")
     mongoAddress = os.environ.get('MONGO_ADDRESS')
     db.client = AsyncIOMotorClient(mongoAddress)
     
