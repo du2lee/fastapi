@@ -31,7 +31,6 @@ async def searchFaq(id):
                 status_code=status.HTTP_200_OK)
 async def searchFaqs():
     searchFaqs = await faqService.searchFaqs()
-    print('result',searchFaqs)
     array = []
     for idx in searchFaqs:
         array.append(FaqDto(**idx))

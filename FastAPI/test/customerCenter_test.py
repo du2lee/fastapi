@@ -3,6 +3,24 @@ sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 from httpx import AsyncClient
 from bson.objectid import ObjectId
+from fastapi.testclient import TestClient
+from app import app
+
+
+
+# client = TestClient(app)
+# def test_getFaqs():
+#     response = client.get("/faqs")
+
+#     assert response.json() == {}
+#     assert response.status_code == 200
+
+
+
+
+
+
+
 
 baseUrl = "http://127.0.0.1:9001/api-customercenter"
 
@@ -35,6 +53,12 @@ async def test_getFaq():
                 "Content": "I wanna go home"
         }
 
+@pytest.mark.asyncio
+async def test_getFaqs():
+    async with AsyncClient(base_url = baseUrl) as client:
+        response = await client.get("/faqs")
+
+        assert response.status_code == 200
 
 @pytest.mark.asyncio
 async def test_updateFaq():
