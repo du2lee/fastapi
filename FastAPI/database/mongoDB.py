@@ -20,7 +20,7 @@ def getConnection() -> AsyncIOMotorClient:
 
 
 async def connectMongo():
-    mongoAddress = os.environ.get('MONGO_ADDRESS')
+    mongoAddress = os.getenv('MONGO_ADDRESS')
     db.client = AsyncIOMotorClient(mongoAddress)
     
 
