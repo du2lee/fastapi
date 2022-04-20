@@ -22,11 +22,6 @@ env:
   IAMPORT_KEY: ${{ secrets.IAMPORT_KEY }}
   IAMPORT_SECRET: ${{ secrets.IAMPORT_SECRET }}
   
-  REMOTE_IP: ${{ secrets.REMOTE_IP }}
-  REMOTE_SSH_ID: ${{ secrets.REMOTE_SSH_ID }}
-  REMOTE_SSH_KEY: ${{ secrets.REMOTE_SSH_KEY }}
-  REMOTE_SSH_PORT: ${{ secrets.REMOTE_SSH_PORT }}
-
 jobs:
   build:
 
@@ -62,6 +57,6 @@ jobs:
       with:
         host: ${{ secrets.REMOTE_IP }}
         username: ${{ secrets.REMOTE_SSH_ID }}
-        key: ${{ secrets.REMOTE_SSH_KEY }}
+        password: ${{ secrets.REMOTE_SSH_PASSWORD }}
         port: ${{ secrets.REMOTE_SSH_PORT }}
         script: whoami
