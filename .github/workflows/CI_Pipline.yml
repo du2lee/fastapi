@@ -28,6 +28,10 @@ jobs:
         
     # Github Repository Secrets를 통해 환경 변수 파일을 생성합니다.
     - name: Generate Environment Variables File for Production
+      run: |
+          echo "MONGO_ADDRESS=$MONGO_ADDRESS" >> .env.production
+          echo "IAMPORT_KEY=$IAMPORT_KEY" >> .env.production
+          echo "IAMPORT_SECRET=$IAMPORT_SECRET" >> .env.production
       env:
         MONGO_ADDRESS: ${{ secrets.MONGO_ADDRESS }}
         IAMPORT_KEY: ${{ secrets.IAMPORT_KEY }}
