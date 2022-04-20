@@ -7,24 +7,25 @@ on:
       - 'hotfix/*'
       - 'refactoring/*'
       - 'dev'
-    paths:
-      - '**.py'
+      - 'main'
+#     paths:
+#       - '**.py'
     
   pull_request:
     branches: [ main ]
 
 permissions:
   contents: read
+  
+env:
+  MONGO_ADDRESS: ${{ secrets.MONGO_ADDRESS }}
+  IAMPORT_KEY: ${{ secrets.IAMPORT_KEY }}
+  IAMPORT_SECRET: ${{ secrets.IAMPORT_SECRET }}
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-    
-    env:
-      MONGO_ADDRESS: ${{ secrets.MONGO_ADDRESS }}
-      IAMPORT_KEY: ${{ secrets.IAMPORT_KEY }}
-      IAMPORT_SECRET: ${{ secrets.IAMPORT_SECRET }}
 
     steps:
     - uses: actions/checkout@v3
