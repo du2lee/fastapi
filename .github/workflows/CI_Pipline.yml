@@ -25,6 +25,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        
+    # Github Repository Secrets를 통해 환경 변수 파일을 생성합니다.
+    - name: Generate Environment Variables File for Production
+      env:
+        MONGO_ADDRESS: ${{ secrets.MONGO_ADDRESS }}
+        IAMPORT_KEY: ${{ secrets.IAMPORT_KEY }}
+        IAMPORT_SECRET: ${{ secrets.IAMPORT_SECRET }}
+
+        
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
