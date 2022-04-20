@@ -8,8 +8,8 @@ on:
       - 'refactoring/*'
       - 'dev'
       - 'main'
-#     paths:
-#       - '**.py'
+    paths:
+      - '**.py'
     
   pull_request:
     branches: [ main ]
