@@ -17,7 +17,7 @@ db = MongoDataBase()
 
 def getConnection() -> AsyncIOMotorClient:
     # tdd 시 connectMongo()가 시작되지 않아 아래 2줄 추가
-    mongoAddress = os.getenv('MONGO_ADDRESS')
+    mongoAddress = 'mongodb://interx:interx%40504@server.interxlab.io:15115/admin'
     db.client = AsyncIOMotorClient(mongoAddress)
     return db.client
 
