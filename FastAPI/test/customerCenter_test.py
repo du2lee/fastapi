@@ -6,28 +6,12 @@ from bson.objectid import ObjectId
 from fastapi.testclient import TestClient
 from app import app
 
-
-
-# client = TestClient(app)
-# def test_getFaqs():
-#     response = client.get("/faqs")
-
-#     assert response.json() == {}
-#     assert response.status_code == 200
-
-
-
-
-
-
-
-
-baseUrl = "http://127.0.0.1:9001"
+baseUrl = "http://test"
 
 @pytest.mark.asyncio
 async def test_postFaq():
     global id, time
-    async with AsyncClient(base_url = baseUrl) as client:
+    async with AsyncClient(app = app, base_url = baseUrl) as client:
         response = await client.post("/api-customercenter/faq", 
         json={
                 "category" : "중요!!",
@@ -41,7 +25,7 @@ async def test_postFaq():
 
 @pytest.mark.asyncio
 async def test_getFaq():
-    async with AsyncClient(base_url = baseUrl) as client:
+    async with AsyncClient(app = app, base_url = baseUrl) as client:
         response = await client.get("/api-customercenter/faq", params={"id": ObjectId(id)})
 
         assert response.status_code == 200
@@ -55,7 +39,8 @@ async def test_getFaq():
 
 @pytest.mark.asyncio
 async def test_getFaqs():
-    async with AsyncClient(base_url = baseUrl) as client:
+    async with AsyncClient(app = app, base_url = baseUrl) as client:
+        
         response = await client.get("/api-customercenter/faqs")
 
         assert response.status_code == 200
@@ -63,7 +48,7 @@ async def test_getFaqs():
 @pytest.mark.asyncio
 async def test_updateFaq():
     global id, time
-    async with AsyncClient(base_url = baseUrl) as client:
+    async with AsyncClient(app = app ,base_url = baseUrl) as client:
         response = await client.patch("/api-customercenter/faq", params={"id": ObjectId(id)},
         json={
                 "category" : "잡담",
@@ -82,7 +67,7 @@ async def test_updateFaq():
 
 @pytest.mark.asyncio
 async def test_deleteFaq():
-    async with AsyncClient(base_url = baseUrl) as client:
+    async with AsyncClient(app = app ,base_url = baseUrl) as client:
         response = await client.delete("/api-customercenter/faq", params={"id": ObjectId(id)})
 
         assert response.status_code == 200

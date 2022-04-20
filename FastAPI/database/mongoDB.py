@@ -16,6 +16,8 @@ db = MongoDataBase()
 
 
 def getConnection() -> AsyncIOMotorClient:
+    mongoAddress = os.getenv('MONGO_ADDRESS')
+    db.client = AsyncIOMotorClient(mongoAddress)
     return db.client
 
 
