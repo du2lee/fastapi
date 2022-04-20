@@ -2,7 +2,13 @@ name: CI Pipline
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - 'feature/*'      
+      - 'hotfix/*'
+      - 'refactoring/*'
+      - 'dev'
+    paths:
+      - '**.py'
     
   pull_request:
     branches: [ main ]
