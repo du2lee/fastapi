@@ -9,3 +9,5 @@ python-dateutil
 pillow
 python-dotenv
 pytest
+pytest-asyncio
+httpx
