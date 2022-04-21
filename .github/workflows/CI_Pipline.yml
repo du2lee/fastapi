@@ -6,10 +6,10 @@ on:
       - 'feature/*'      
       - 'hotfix/*'
       - 'refactoring/*'
-#       - 'dev'
-#       - 'main'
-    paths:
-      - '**.py'
+      - 'dev'
+      - 'main'
+#     paths:
+#       - '**.py'
     
   pull_request:
     branches: [ main ]
