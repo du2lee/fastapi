@@ -10,8 +10,8 @@ on:
       - 'main'
     
     # Python 파일에 수정이 일어났을 때
-#     paths:
-#       - '**.py'
+    paths:
+      - '**.py'
     
   pull_request:
     branches: [ main ]
