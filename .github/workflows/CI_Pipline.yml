@@ -59,4 +59,8 @@ jobs:
         username: ${{ secrets.REMOTE_SSH_ID }}
         password: ${{ secrets.REMOTE_SSH_PASSWORD }}
         port: ${{ secrets.REMOTE_SSH_PORT }}
-        script: whoami
+        script: |
+            whoami
+            cd fastapi
+            ls
+            git pull
