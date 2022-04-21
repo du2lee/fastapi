@@ -6,10 +6,12 @@ on:
       - 'feature/*'      
       - 'hotfix/*'
       - 'refactoring/*'
-      - 'dev'
-      - 'main'
-#     paths:
-#       - '**.py'
+      # - 'dev'
+      # - 'main'
+    
+    # Python 파일에 수정이 일어났을 때
+    paths:
+      - '**.py'
     
   pull_request:
     branches: [ main ]
