@@ -36,7 +36,7 @@ GitAction을 이용하여 간단한 CI/CD를 구현하였습니다.
 ## ⚙️ System Architecture
 
 <center>
-    <img src="https://user-images.githubusercontent.com/61954751/164376982-790f2634-23bf-4b04-bb28-ee37333bb07c.png" alt="Architecture"/>
+    <img src="https://user-images.githubusercontent.com/61954751/165026128-e015e113-bf67-4807-97ad-4c528194cfec.png" alt="Architecture"/>
 </center>
 <br>
 
