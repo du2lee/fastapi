@@ -18,7 +18,7 @@ class BaseDtoMixin(BaseModel):
     created_at: Optional[datetime] = None
 
     class Config:
-        alias_generator = to_camel
+        # alias_generator = to_camel
         allow_population_by_field_name = True
 
     def to_camel(property):

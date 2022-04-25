@@ -4,7 +4,7 @@ from bson import ObjectId
 from pydantic import BaseModel, Field
 from models.baseModel import PyObjectId
 
-__all__ = ["Faq", "UpdateFaq","Notice"]
+__all__ = ["Faq", "UpdateFaq","Notice","UpdateNotice"]
 
 # Faq 모델 입니다.
 class Faq(BaseModel):
@@ -49,6 +49,22 @@ class Notice(BaseModel):
     title: str = Field(...)
     content: str = Field(...)
     date : datetime = datetime.now()
+
+    class Config:
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}
+        schema_extra = {
+            "example" : {
+                "title": "제목을 입력하세요",
+                "content": "내용을 입력하세요"
+            }
+        }
+
+# Faq 수정 시 사용하는 모델 입니다.
+class UpdateNotice(BaseModel):
+    title: Optional[str] = None
+    date: Optional[datetime] = None
+    content: Optional[str] = None
 
     class Config:
         arbitrary_types_allowed = True

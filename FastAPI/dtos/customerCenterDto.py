@@ -15,7 +15,7 @@ class FaqDto(BaseDtoMixin):
     content: str = ...
 
 
-class NoticeDto(BaseModel):
+class NoticeDto(BaseDtoMixin):
     def __init__(self, **data):
         super().__init__(**data)
 
