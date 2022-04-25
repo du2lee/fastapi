@@ -19,6 +19,14 @@ GitAction을 이용하여 간단한 CI/CD를 구현하였습니다.
 
 ```
 
+## 🏃 Run
+
+```sh
+
+gunicorn -k uvicorn.workers.UvicornWorker app:app --bind 0.0.0.0:9001 --access-logfile ../gunicorn-access/log
+
+```
+
 
 ## 🔧 Tech Stack
 
