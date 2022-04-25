@@ -93,7 +93,6 @@ class NoticeService:
             config.DB_SELFLEARNING,
             collectionNotice,
             {"_id": notice.inserted_id})
-        print(newNotice)
         return newNotice
 
     # 전체 notice 검색

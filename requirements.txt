@@ -4,6 +4,7 @@ motor
 pydantic
 humps
 uvicorn
+gunicorn
 requests
 python-dateutil
 pillow

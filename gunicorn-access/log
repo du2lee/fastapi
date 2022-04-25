@@ -1,0 +1,10 @@
+127.0.0.1:61511 - "GET /docs HTTP/1.1" 200
+127.0.0.1:61511 - "GET /openapi.json HTTP/1.1" 200
+127.0.0.1:61513 - "POST /api-customercenter/faq HTTP/1.1" 201
+127.0.0.1:61520 - "GET /api-customercenter/faqs HTTP/1.1" 200
+127.0.0.1:61531 - "GET /docs HTTP/1.1" 200
+127.0.0.1:61531 - "GET /openapi.json HTTP/1.1" 200
+127.0.0.1:61532 - "POST /api-customercenter/notice HTTP/1.1" 201
+127.0.0.1:61541 - "GET /api-customercenter/notices HTTP/1.1" 200
+127.0.0.1:61545 - "GET /api-customercenter/faqs HTTP/1.1" 200
+127.0.0.1:61550 - "POST /api-customercenter/faq HTTP/1.1" 201
