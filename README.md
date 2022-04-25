@@ -25,6 +25,15 @@ GitAction을 이용하여 간단한 CI/CD를 구현하였습니다.
 
 gunicorn -k uvicorn.workers.UvicornWorker app:app --bind 0.0.0.0:9001 --access-logfile ../gunicorn-access/log
 
+설명
+
+-k uvicorn.workers.UvicornWorker : Uvicorn worker 클래스를 사용
+–access-logfile : Gunicorn 로그 파일 기록
+app:app :  app.py의 app 실행
+-workers 3 : worker process 갯수 (CPU 코어 * 3)
+–daemon : Gunicorn을 백그라운드 데몬 구동
+–bind 0.0.0.0:9001 : 9001 포트에 서버 연결 
+
 ```
 
 
