@@ -1,8 +1,6 @@
 from dtos.baseDto import BaseDtoMixin
 from typing import Optional
-from pydantic import BaseModel, validator, Field
-from models.baseModel import PyObjectId
-from datetime import date, datetime
+from datetime import datetime
 
 __all__ = ['FaqDto', 'NoticeDto']
 
