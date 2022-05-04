@@ -12,3 +12,5 @@ python-dotenv
 pytest
 pytest-asyncio
 httpx
+pyjwt
+bcrypt

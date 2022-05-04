@@ -1,22 +1,33 @@
 from pydantic import BaseModel, Field
-from typing import Optional
-from models.baseModel import PyObjectId
+from enum import Enum
 
-__all__ = ["User", "Login","Token","TokenData"]
 
-class User(BaseModel):
-    _id: Optional[PyObjectId] = Field(alias="_id")
-    username: str = Field(...)
-    company: str = Field(...)
-    password: str = Field(...)
+__all__ = ["UserRegister", "SnsType", "Token", "UserToken"]
 
-class Login(BaseModel):
-    username: str = Field(...)
-    password: str = Field(...)
-    
+class UserRegister(BaseModel):
+    # pip install 'pydantic[email]'
+    email: str = None
+    pw: str = None
+
+
+class SnsType(str, Enum):
+    email: str = "email"
+    facebook: str = "facebook"
+    google: str = "google"
+    kakao: str = "kakao"
+
+
 class Token(BaseModel):
-    access_token: str = Field(...)
-    token_type: str = Field(...)
+    Authorization: str = None
 
-class TokenData(BaseModel):
-    username: Optional[str] = None
+
+class UserToken(BaseModel):
+    id: int
+    email: str = None
+    name: str = None
+    phone_number: str = None
+    profile_img: str = None
+    sns_type: str = None
+
+    class Config:
+        orm_mode = True

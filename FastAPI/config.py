@@ -13,6 +13,9 @@ DB_SELFLEARNING = "SelfLearning"
 """
 COLLECTION KEYWORD
 """
+
+DUHUITEST = "duhuiTest"
+
 CUSTOMER_FAQ = "customerCenter_faq"
 CUSTOMER_NOTICE = "customerCenter_notice"
 
