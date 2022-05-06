@@ -35,4 +35,3 @@ async def login(formData: OAuth2PasswordRequestForm = Depends()):
 @router.get("/detail")
 async def userDetail(currentUser: NewUser = Depends(userService.getCurrentUser)):
     return UsersDto(**currentUser)
-    
