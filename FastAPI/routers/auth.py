@@ -11,7 +11,8 @@ router = APIRouter(tags=['User'])
 
 userService = UserService()
 
-@router.post("/signup", status_code=status.HTTP_201_CREATED)
+@router.post("/signUp", status_code=status.HTTP_201_CREATED, description = """
+    회원가입 API 입니다.""")
 async def signUp(newUser: NewUser):
     hashPW = bcrypt.hashpw(newUser.password.encode("utf-8"), bcrypt.gensalt())
     newUser = jsonable_encoder(newUser)
@@ -19,7 +20,8 @@ async def signUp(newUser: NewUser):
     new_user = await userService.addUser(newUser)
     return UsersDto(**new_user)
 
-@router.post("/token" , response_model=Token)
+@router.post("/login" , response_model=Token, description = """
+    로그인 API 입니다.""")
 async def login(formData: OAuth2PasswordRequestForm = Depends()):
     username = formData.username
     password = formData.password
@@ -31,5 +33,6 @@ async def login(formData: OAuth2PasswordRequestForm = Depends()):
     raise HTTPException(status_code=400, detail="do not creating token")
 
 @router.get("/detail")
-async def user_detail(current_user: NewUser = Depends(userService.getCurrentUser)):
+async def userDetail(currentUser: NewUser = Depends(userService.getCurrentUser)):
+    print(currentUser)
     return {"name": "Danny", "email": "danny@tutorialsbuddy.com"}

@@ -12,9 +12,9 @@ collection = config.DUHUITEST
 load_dotenv(verbose=True)
 JWT_SECRET = os.getenv('JWT_SECRET')
 JWT_ALGORITHM = os.getenv('JWT_ALGORITHM')
+TOKEN_URL = os.getenv('TOKEN_URL')
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api-auth/token")
-
+oauth2Scheme = OAuth2PasswordBearer(tokenUrl=TOKEN_URL)
 
 class UserService:
 
@@ -29,7 +29,6 @@ class UserService:
             config.DB_SELFLEARNING,
             collection,
             {"_id": user.inserted_id})
-
         return newUser
 
     # 전체 user 검색
@@ -70,8 +69,8 @@ class UserService:
             return False
 
     # 현재 사용자
-    async def getCurrentUser(self, token: str = Depends(oauth2_scheme)):
-        credentials_exception = HTTPException(
+    async def getCurrentUser(self, token: str = Depends(oauth2Scheme)):
+        credentialsException = HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
@@ -80,11 +79,11 @@ class UserService:
             payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
             username: str = payload.get("sub")
             if username is None:
-                raise credentials_exception
+                raise credentialsException
             token_data = TokenData(username = username)
         except JWTError:
-            raise credentials_exception
+            raise credentialsException
         user = await self.searchUser(username=token_data.username)
         if user is None:
-            raise credentials_exception
+            raise credentialsException
         return user
