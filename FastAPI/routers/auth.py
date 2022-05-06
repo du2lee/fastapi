@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, status, Request
 from fastapi.encoders import jsonable_encoder
 from fastapi.security import OAuth2PasswordRequestForm
 import bcrypt
@@ -34,5 +34,4 @@ async def login(formData: OAuth2PasswordRequestForm = Depends()):
 
 @router.get("/detail")
 async def userDetail(currentUser: NewUser = Depends(userService.getCurrentUser)):
-    print(currentUser)
-    return {"name": "Danny", "email": "danny@tutorialsbuddy.com"}
+    return UsersDto(**currentUser)
