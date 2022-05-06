@@ -8,13 +8,13 @@ from jose import JWTError, jwt
 import config as config
 import bcrypt, os
 
-collection = config.DUHUITEST
 load_dotenv(verbose=True)
 JWT_SECRET = os.getenv('JWT_SECRET')
 JWT_ALGORITHM = os.getenv('JWT_ALGORITHM')
 TOKEN_URL = os.getenv('TOKEN_URL')
 
 oauth2Scheme = OAuth2PasswordBearer(tokenUrl=TOKEN_URL)
+collection = config.DUHUITEST
 
 class UserService:
 
