@@ -20,7 +20,7 @@ async def signUp(newUser: NewUser):
     new_user = await userService.addUser(newUser)
     return UsersDto(**new_user)
 
-@router.post("/login" , response_model=Token, description = """
+@router.post("/token" , response_model=Token, description = """
     로그인 API 입니다.""")
 async def login(formData: OAuth2PasswordRequestForm = Depends()):
     username = formData.username
