@@ -12,7 +12,8 @@ collection = config.DUHUITEST
 load_dotenv(verbose=True)
 JWT_SECRET = os.getenv('JWT_SECRET')
 JWT_ALGORITHM = os.getenv('JWT_ALGORITHM')
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api-auth/token")
 
 
 class UserService:
