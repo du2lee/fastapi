@@ -14,3 +14,4 @@ pytest-asyncio
 httpx
 pyjwt
 bcrypt
+python-multipart
