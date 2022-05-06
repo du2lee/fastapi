@@ -1,13 +1,18 @@
+from fastapi import Depends, HTTPException, status
+from models.auth import TokenData
 from repo.baseRepo import *
+from fastapi.security import OAuth2PasswordBearer
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
+from jose import JWTError, jwt
 import config as config
-import bcrypt, os, jwt
+import bcrypt, os
 
 collection = config.DUHUITEST
 load_dotenv(verbose=True)
 JWT_SECRET = os.getenv('JWT_SECRET')
 JWT_ALGORITHM = os.getenv('JWT_ALGORITHM')
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 class UserService:
@@ -57,8 +62,28 @@ class UserService:
     # 인증
     async def authenticate(self, username, password):
         try:
-            user = self.searchUser(username)
+            user = await self.searchUser(username)
             passwordCheck = self.verifyPassword(password, user['password'])
             return passwordCheck
         except:
             return False
+
+    # 현재 사용자
+    async def getCurrentUser(self, token: str = Depends(oauth2_scheme)):
+        credentials_exception = HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+        try:
+            payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+            username: str = payload.get("sub")
+            if username is None:
+                raise credentials_exception
+            token_data = TokenData(username = username)
+        except JWTError:
+            raise credentials_exception
+        user = await self.searchUser(username=token_data.username)
+        if user is None:
+            raise credentials_exception
+        return user

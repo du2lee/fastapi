@@ -1,13 +1,13 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, status
 from fastapi.encoders import jsonable_encoder
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordRequestForm
 import bcrypt
 
 from services.auth import *
 from models.auth import *
 from dtos.authDto import *
 
-router = APIRouter(prefix="/auth")
+router = APIRouter(tags=['User'])
 
 userService = UserService()
 
@@ -23,10 +23,13 @@ async def signUp(newUser: NewUser):
 async def login(formData: OAuth2PasswordRequestForm = Depends()):
     username = formData.username
     password = formData.password
-    if userService.authenticate(username, password):
+    flag = await userService.authenticate(username, password)
+    if flag:
         access_token = userService.createAccessToken(
             data={"sub": username}, expires_delta = timedelta(minutes=30)) #추후에 minutes dotenv에 추가하여 사용
         return {"access_token": access_token, "token_type": "bearer"}
-    else:
-        raise HTTPException(
-            status_code=400, detail="Incorrect username or password")
+    raise HTTPException(status_code=400, detail="do not creating token")
+
+@router.get("/detail")
+async def user_detail(current_user: NewUser = Depends(userService.getCurrentUser)):
+    return {"name": "Danny", "email": "danny@tutorialsbuddy.com"}

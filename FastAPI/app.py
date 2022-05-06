@@ -28,7 +28,7 @@ app = createApp()
 
 #routers
 app.include_router(customerCenterRouter, prefix="/api-customercenter")
-app.include_router(authRouter, prefix="/api-auth")
+app.include_router(authRouter)
 
 @app.on_event("startup")
 async def onAppStart():
