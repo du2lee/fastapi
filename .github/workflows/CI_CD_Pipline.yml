@@ -23,6 +23,7 @@ env:
   MONGO_ADDRESS: ${{ secrets.MONGO_ADDRESS }}
   IAMPORT_KEY: ${{ secrets.IAMPORT_KEY }}
   IAMPORT_SECRET: ${{ secrets.IAMPORT_SECRET }}
+  TOKEN_URL: ${{ secrets.TOKEN_URL }}
   
 jobs:
   build:
